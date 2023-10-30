@@ -7,9 +7,17 @@ from kivy.graphics.texture import Texture
 import cv2
 import qrcode
 from pyzbar.pyzbar import decode
+from kivy.utils import platform
+
 
 class Wow(App):
     def build(self):
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission, check_permission
+            request_permissions([Permission.CAMERA])
+            if not check_permission(Permission.CAMERA):
+                return Label(text="Camera permission not granted!")
+
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
         self.layout.add_widget(self.camera_image)
@@ -18,6 +26,7 @@ class Wow(App):
         self.capture = cv2.VideoCapture(0)
         Clock.schedule_interval(self.update, 1.0/30.0)  # Update every 30 frames per second
         return self.layout
+    
 
     def update(self, dt):
         ret, frame = self.capture.read()
