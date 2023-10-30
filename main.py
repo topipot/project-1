@@ -12,12 +12,6 @@ from kivy.utils import platform
 
 class Wow(App):
     def build(self):
-        if platform == 'android':
-            from android.permissions import request_permissions, Permission, check_permission
-            request_permissions([Permission.CAMERA])
-            if not check_permission(Permission.CAMERA):
-                return Label(text="Camera permission not granted!")
-
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
         self.layout.add_widget(self.camera_image)
@@ -25,8 +19,30 @@ class Wow(App):
         self.layout.add_widget(self.results_label)
         self.capture = cv2.VideoCapture(0)
         Clock.schedule_interval(self.update, 1.0/30.0)  # Update every 30 frames per second
+
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission, check_permission
+            
+            if not check_permission(Permission.CAMERA):
+                self.permission_button = Button(text="Request Camera Permission")
+                self.permission_button.bind(on_press=self.request_camera_permission)
+                self.layout.add_widget(self.permission_button)
+            else:
+                self.start_camera()     
         return self.layout
-    
+
+    def request_camera_permission(self, instance):
+        from android.permissions import request_permissions, Permission
+        request_permissions([Permission.CAMERA])
+        
+        # Check for permission and start the camera if granted
+        if check_permission(Permission.CAMERA):
+            self.layout.remove_widget(self.permission_button)
+            self.start_camera()
+            
+    def start_camera(self):
+        self.capture = cv2.VideoCapture(0)
+        Clock.schedule_interval(self.update, 1.0/30.0)
 
     def update(self, dt):
         ret, frame = self.capture.read()
