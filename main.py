@@ -49,7 +49,7 @@ class Wow(App):
             # Create a Camera object and set the selected resolution
             camera = Camera(resolution=preview_resolution)
             # Start the camera
-            camera.start(
+            camera.start()
 
         return self.layout
 
