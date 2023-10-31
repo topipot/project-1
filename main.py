@@ -9,6 +9,7 @@ import cv2
 import qrcode
 from pyzbar.pyzbar import decode
 from kivy.utils import platform
+from android.permissions import check_permission
 
 
 class Wow(App):
@@ -18,7 +19,7 @@ class Wow(App):
         self.layout.add_widget(self.camera_image)
         self.results_label = Label(text="Scanning QR codes...")
         self.layout.add_widget(self.results_label)
-        self.capture = cv2.VideoCapture(1)
+        self.capture = cv2.VideoCapture(0)
         Clock.schedule_interval(self.update, 1.0/30.0)  # Update every 30 frames per second
 
         if platform == 'android':
@@ -44,7 +45,7 @@ class Wow(App):
             self.start_camera()
             
     def start_camera(self):
-        self.capture = cv2.VideoCapture(1)
+        self.capture = cv2.VideoCapture(0)
         Clock.schedule_interval(self.update, 1.0/30.0)
 
     def update(self, dt):
