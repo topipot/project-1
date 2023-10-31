@@ -10,7 +10,9 @@ import qrcode
 from pyzbar.pyzbar import decode
 from kivy.utils import platform
 from android.permissions import check_permission
+from kivy.core.camera import Camera
 
+resolutions = Camera().resolutions
 
 class Wow(App):
     def build(self):
@@ -23,15 +25,31 @@ class Wow(App):
         Clock.schedule_interval(self.update, 1.0/30.0)  # Update every 30 frames per second
 
         if platform == 'android':
-            from android.permissions import request_permissions, Permission, check_permission
-            
+            from android.permissions import request_permissions, Permission, check_permission       
             if not check_permission(Permission.CAMERA):
                 self.request_camera_permission(None)
                 self.permission_button = Button(text="Request Camera Permission")
                 self.permission_button.bind(on_press=self.request_camera_permission)
                 self.layout.add_widget(self.permission_button)
             else:
-                self.start_camera() 
+                self.start_camera()
+
+        preview_resolution = None
+        max_width = 1280  # Maximum width you want to allow
+
+        for resolution in resolutions:
+            width, height = resolution
+            if width <= max_width and width / height == 4 / 3:
+                preview_resolution = resolution
+                break
+
+        if preview_resolution is None:
+            print('wow')# Handle the case where no suitable resolution was found
+        else:
+            # Create a Camera object and set the selected resolution
+            camera = Camera(resolution=preview_resolution)
+            # Start the camera
+            camera.start(
 
         return self.layout
 
