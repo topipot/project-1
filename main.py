@@ -3,6 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.clock import Clock
+from kivy.uix.button import Button
 from kivy.graphics.texture import Texture
 import cv2
 import qrcode
@@ -24,11 +25,13 @@ class Wow(App):
             from android.permissions import request_permissions, Permission, check_permission
             
             if not check_permission(Permission.CAMERA):
+                self.request_camera_permission(None)
                 self.permission_button = Button(text="Request Camera Permission")
                 self.permission_button.bind(on_press=self.request_camera_permission)
                 self.layout.add_widget(self.permission_button)
             else:
-                self.start_camera()     
+                self.start_camera() 
+
         return self.layout
 
     def request_camera_permission(self, instance):
