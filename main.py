@@ -7,8 +7,13 @@ from kivy.graphics.texture import Texture
 import cv2
 from kivy.utils import platform
 
+
 class Wow(App):
     def build(self):
+
+        if platform == 'android':
+            from android.permissions import request_permissions, Permission
+            request_permissions([Permission.CAMERA])
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
@@ -18,14 +23,8 @@ class Wow(App):
         self.capture = cv2.VideoCapture(0)
         Clock.schedule_interval(self.update, 1.0/30.0)  # Update every 30 frames per second
 
-        if platform == 'android':
-            from android.permissions import request_permissions, Permission
-            request_permissions([Permission.CAMERA])
         return self.layout
             
-    def start_camera(self):
-        self.capture = cv2.VideoCapture(0)
-        Clock.schedule_interval(self.update, 1.0/30.0)
 
     def update(self, dt):
         ret, frame = self.capture.read()
