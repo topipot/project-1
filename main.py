@@ -4,16 +4,17 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 import cv2
-#from kivy.utils import platform
+from kivy.utils import platform
 
 class Wow(MDApp):
     def build(self):
-        '''if platform == 'android':
+        if platform == 'android':
             from android.permissions import request_permissions, Permission, check_permission
 
             # Check if CAMERA permission is granted
             if not check_permission(Permission.CAMERA):
-                request_permissions([Permission.CAMERA])'''
+                request_permissions([Permission.CAMERA])
+                print('granted')
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
