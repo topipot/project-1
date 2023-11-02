@@ -98,7 +98,7 @@ fullscreen = 1
 android.permissions = android.permission.CAMERA
 
 # (list) features (adds uses-feature -tags to manifest)
-#android.features = android.hardware.usb.host
+android.features = android.hardware.CAMERA
 
 # (int) Target Android API, should be as high as possible.
 #android.api = 32
