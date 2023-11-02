@@ -96,13 +96,13 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = android.permission.INTERNET,CAMERA
+android.permissions = android.permission.CAMERA
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-android.api = 32
+#android.api = 32
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
@@ -111,7 +111,7 @@ android.api = 32
 #android.sdk = 20
 
 # (str) Android NDK version to use
-android.ndk = 25b
+#android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
@@ -148,9 +148,9 @@ android.ndk = 25b
 
 # (str) Extra xml to write directly inside the <manifest> element of AndroidManifest.xml
 # use that parameter to provide a filename from where to load your custom XML code
-android.extra_manifest_xml =  '
-<uses-permission android:name="android.permission.CAMERA" />
-'
+#android.extra_manifest_xml =  '
+#<uses-permission android:name="android.permission.CAMERA" />
+#'
 
 # (str) Extra xml to write directly inside the <manifest><application> tag of AndroidManifest.xml
 # use that parameter to provide a filename from where to load your custom XML arguments:
