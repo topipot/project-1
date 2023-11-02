@@ -7,27 +7,6 @@ import cv2
 from kivy.utils import platform
 import android
 
-from kivy import __version__ as kivy_version
-from opencv import __version__ as opencv_version
-
-
-def check_library_versions():
-    # Check Kivy version
-    if platform == 'android':
-        required_kivy_version = '2.2.1'  # Update this to your required Kivy version
-        if kivy_version < required_kivy_version:
-            print(f"Kivy version {kivy_version} is not compatible. Required: {required_kivy_version}")
-            return False
-    
-    # Check OpenCV version
-    if platform == 'android':
-        required_opencv_version = '4.8.0'  # Update this to your required OpenCV version
-        if opencv_version < required_opencv_version:
-            print(f"OpenCV version {opencv_version} is not compatible. Required: {required_opencv_version}")
-            return False
-
-    return True
-
 class Wow(MDApp):
     def build(self):
         if platform == 'android':
@@ -37,11 +16,6 @@ class Wow(MDApp):
             if not check_permission(Permission.CAMERA):
                 request_permissions([Permission.CAMERA])
                 print('camera permission requested')
-
-            # Check library versions
-            if not check_library_versions():
-                print('Library versions are not compatible with the target SDK version.')
-                return
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
