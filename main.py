@@ -5,6 +5,21 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 import cv2
 from kivy.utils import platform
+import android
+
+def check_library_versions():
+    # Check Kivy version
+    from kivy import __version__ as kivy_version
+    if platform == 'android':
+        required_kivy_version = '2.2.1'  # Update this to your required Kivy version
+        if kivy_version < required_kivy_version:
+            print(f"Kivy version {kivy_version} is not compatible. Required: {required_kivy_version}")
+            return False
+
+    # Check other library versions
+    # Add similar checks for other libraries (e.g., kivymd, opencv, pyjnius, etc.)
+
+    return True
 
 class Wow(MDApp):
     def build(self):
@@ -15,6 +30,11 @@ class Wow(MDApp):
             if not check_permission(Permission.CAMERA):
                 request_permissions([Permission.CAMERA])
                 print('camera permission requested')
+
+            # Check library versions
+            if not check_library_versions():
+                print('Library versions are not compatible with the target SDK version.')
+                return
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
