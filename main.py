@@ -14,7 +14,7 @@ class Wow(MDApp):
             # Check if CAMERA permission is granted
             if not check_permission(Permission.CAMERA):
                 request_permissions([Permission.CAMERA])
-                print('granted')
+                print('camera permission requested')
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
