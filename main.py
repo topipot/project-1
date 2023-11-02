@@ -29,6 +29,8 @@ class Wow(MDApp):
             Clock.schedule_interval(self.update, 1.0 / 30.0)
         except Exception as e:
             print(f"Error starting camera: {e}")
+            print(type(e))
+            print(e.args)
 
     def update(self, dt):
         try:
