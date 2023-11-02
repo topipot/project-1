@@ -37,7 +37,8 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3==3.9.10,hostpython3==3.9.10,kivy,kivymd==1.1.1,pypng,opencv==4.7.0,pillow,libzbar,libiconv,pyjnius,numpy
+requirements = python3==3.9.10,hostpython3==3.9.10,kivy==2.2.1,kivymd==1.1.1,Kivy_garden,pygments,pypiwin32,cython==3.0.0,pypng,opencv,pillow,libzbar,libiconv,pyjnius,
+numpy,typing-extensions,opencv_extras,pyjnius==1.6.0
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -74,7 +75,7 @@ osx.kivy_version = 2.2.1
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
 # (string) Presplash background color (for android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
@@ -95,7 +96,7 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = CAMERA
+android.permissions = android.permission.INTERNET,CAMERA
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
