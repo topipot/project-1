@@ -37,6 +37,8 @@ class Wow(MDApp):
                 self.show_frame(frame)
         except Exception as e:
             print(f"Error updating frame: {e}")
+            print(type(e))
+            print(e.args)
 
     def show_frame(self, frame):
         try:
