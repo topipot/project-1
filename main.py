@@ -7,17 +7,24 @@ import cv2
 from kivy.utils import platform
 import android
 
+from kivy import __version__ as kivy_version
+from opencv import __version__ as opencv_version
+
+
 def check_library_versions():
     # Check Kivy version
-    from kivy import __version__ as kivy_version
     if platform == 'android':
         required_kivy_version = '2.2.1'  # Update this to your required Kivy version
         if kivy_version < required_kivy_version:
             print(f"Kivy version {kivy_version} is not compatible. Required: {required_kivy_version}")
             return False
-
-    # Check other library versions
-    # Add similar checks for other libraries (e.g., kivymd, opencv, pyjnius, etc.)
+    
+    # Check OpenCV version
+    if platform == 'android':
+        required_opencv_version = '4.8.0'  # Update this to your required OpenCV version
+        if opencv_version < required_opencv_version:
+            print(f"OpenCV version {opencv_version} is not compatible. Required: {required_opencv_version}")
+            return False
 
     return True
 
@@ -43,7 +50,7 @@ class Wow(MDApp):
 
     def on_start(self):
         try:
-            self.capture = cv2.VideoCapture(1)
+            self.capture = cv2.VideoCapture(0)
             if not self.capture.isOpened():
                 raise Exception("Camera not opened")
 
