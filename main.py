@@ -23,7 +23,7 @@ class Wow(MDApp):
 
     def on_start(self):
         try:
-            self.capture = cv2.VideoCapture(0)
+            self.capture = cv2.VideoCapture(1)
             if not self.capture.isOpened():
                 raise Exception("Camera not opened")
 
