@@ -5,7 +5,7 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 import cv2
 from kivy.utils import platform
-#import numpy as np
+import numpy as np
 import jnius import autoclass
 from android.permissions import request_permissions, Permission
 
