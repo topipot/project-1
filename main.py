@@ -5,13 +5,17 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 import cv2
 from kivy.utils import platform
-import android
+#import numpy as np
+import jnius import autoclass
+from android.permissions import request_permissions, Permission
+
+Camerax = autoclass('android.hardware.Camera')
+CameraInfo=autoclass('android.hardware.Camera$CameraInfo')
 
 class Wow(MDApp):
     def build(self):
         if platform == 'android':
-            from android.permissions import request_permissions, Permission, check_permission
-
+            
             # Check if CAMERA permission is granted
             if not check_permission(Permission.CAMERA):
                 request_permissions([Permission.CAMERA])
