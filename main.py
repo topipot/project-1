@@ -14,12 +14,14 @@ CameraInfo=autoclass('android.hardware.Camera$CameraInfo')
 
 class Wow(MDApp):
     def build(self):
-        if platform == 'android':
+        '''if platform == 'android':
             
             # Check if CAMERA permission is granted
             if not check_permission(Permission.CAMERA):
                 request_permissions([Permission.CAMERA])
-                print('camera permission requested')
+                print('camera permission requested')'''
+        
+        request_permissions=([Permission.CAMERA])
 
         self.layout = BoxLayout(orientation='vertical')
         self.camera_image = Image()
