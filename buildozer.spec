@@ -101,7 +101,7 @@ android.permissions = android.permission.CAMERA
 android.features = android.hardware.CAMERA
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 32
+android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
